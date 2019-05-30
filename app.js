@@ -19,7 +19,7 @@ var commentRoutes    = require("./routes/comments"),
 
 
 // seedDB(); //seed database
-mongoose.connect("mongodb://localhost:27017/yelp-camp-v13",{
+mongoose.connect("mongodb+srv://gibrantorres:Amadeus1.@cluster0-1ryko.mongodb.net/test?retryWrites=true&w=majority",{
 	useNewUrlParser: true,
 	useCreateIndex: true
 }).then(()=>{
