@@ -11,14 +11,12 @@ var express		  = require("express"),
 	methodOverride= require("method-override"),
 	seedDB		  = require("./seeds");
 
-//required routes
+//rutas requeridas
 var commentRoutes    = require("./routes/comments"),
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes       = require("./routes/index");
 
-
-
-// seedDB(); //seed database
+// semilla para la base de datos
 mongoose.connect("mongodb+srv://gibrantorres:gibranamadeus1@cluster0-1ryko.mongodb.net/test?retryWrites=true&w=majority",{
 	useNewUrlParser: true,
 	useCreateIndex: true
@@ -28,14 +26,14 @@ mongoose.connect("mongodb+srv://gibrantorres:gibranamadeus1@cluster0-1ryko.mongo
 	console.log("error: ",err.message);
 });
 
-//packages needed
+//paquetes necesarios
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-//PASSPORT CONFIGURATION
+//configuracion de passport
 app.use(require("express-session")({
 	secret:"FIERRO PARIENTE",
 	resave:false,
@@ -48,7 +46,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//global variables?
+//variables globales para los flash
 app.use(function(req,res,next){
 	res.locals.currentUser=req.user;
 	res.locals.error=req.flash("error");
